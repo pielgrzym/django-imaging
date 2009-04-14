@@ -1,0 +1,33 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/forms.css{% endblock %}" />
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+<body class="change-form">
+<div id="container">
+<form id="ajax_form" method="post" enctype="multipart/form-data" action="/imaging/iframe_form/">
+  <fieldset class="module aligned">
+  {% for field in form %}
+  <div class="form-row">
+    {{ field.errors }}
+    {{ field.label_tag }} {{ field }}
+  </div>
+  {% endfor %}
+  </fieldset>
+
+  <input id="upload_image" type="submit" value="{% trans "Upload image" %}" />
+</form>
+{% if not callback %}
+<input id="callback" type="hidden" value="0" />
+{% else %}
+<input id="callback" type="hidden" value="{{callback}}" />
+{% endif %}
+</div>
+</body>
+</html>
