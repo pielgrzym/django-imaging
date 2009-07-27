@@ -51,6 +51,7 @@ def create_thumb(imgfield, size_x, size_y, suffix="_thumb_", force_aspect=False)
     file = open(dirname(imgfield.path)+'/'+thumb_name, "w")
     thumbnail = File(file)
     thumbnail.write(thumb_data)
+    thumbnail.close()
     imgfield.file.close()
 
 def extract_filename(path):

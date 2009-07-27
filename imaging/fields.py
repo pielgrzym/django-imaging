@@ -24,10 +24,13 @@ def save_relations(sender, **kwargs):
   '''Take care about image order and image connection to a model'''
   value_dict = getattr(kwargs['instance'], kwargs['instance']._imaging_fname).split(",")
   for i, v in enumerate(value_dict):
-    image = Image.objects.get(pk=v)
-    image.ordering = i
-    image.content_object = kwargs['instance']
-    image.save()
+    try:
+      image = Image.objects.get(pk=v)
+      image.ordering = i
+      image.content_object = kwargs['instance']
+      image.save()
+    except:
+      pass
 
 
 class ImagingField(models.Field):

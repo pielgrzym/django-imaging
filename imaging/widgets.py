@@ -16,8 +16,9 @@ class ImageSelection(Widget):
         'imaging/imageselection.js')
 
   def render(self, name, value, attrs=None):
-    if value is None: 
-      value = ''
+    if not value == None:
+      value = value.replace(' ', '')
+    if value == None or value == '': 
       initial_values = []
     else:
       ids = value.split(",")

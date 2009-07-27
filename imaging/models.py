@@ -5,6 +5,7 @@ from django.utils.functional import curry
 from imaging.utils import create_thumb, extract_filename, remove_thumb
 from django.db.models.signals import post_init
 from settings import MEDIA_URL
+from django.utils.safestring import mark_safe
 # Create your models here.
 
 DEFAULT_IMAGING_SETTINGS = {
@@ -68,6 +69,11 @@ class Image(models.Model):
     if self.id:
       directory = '%s%s/' % (MEDIA_URL, IMAGING_SETTINGS['image_dir'])
       return directory+extract_filename(self.image.path)+preset['suffix']+".jpg"      
+
+  def get_admin_list_thumbnail(self):
+    thb_url = self.get_small_thumb_url()
+    return mark_safe('<img src="'+thb_url+'" />')
+  get_admin_list_thumbnail.allow_tags = True
  
   def save(self, force_insert=False, force_update=False):
     original_image = self.image
