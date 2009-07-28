@@ -1,6 +1,10 @@
 $(document).ready(function(){
     // if some images already availible fire jqueryUI sortables
-    $("div.image_container").sortable();
+    $("div.image_container").sortable({
+      stop: function(e,ui) {
+      ui.item.css({'top':'0','left':'0'});
+      }
+      });
     //$("div.image_container").sortable({ containment: 'parent', appendTo: 'body' });
     // event binding
     $("div.image_block").hover(show_buttons, hide_buttons); // eof image_block hover
