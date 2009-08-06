@@ -14,14 +14,14 @@ def iframe_form(request):
   if request.method == 'POST':
     form = AjaxUploadForm(request.POST, request.FILES)
     if form.is_valid():
-      name = form.cleaned_data['name']
-      alt = form.cleaned_data['alt']
-      title = form.cleaned_data['title']
-      image_upl = request.FILES['image']
       new_image = form.save()
-      id = new_image.pk
-      img = new_image.get_admin_thumb_url()
-      response_dict = { 'title':title, 'name':name[:25], 'id': id, 'image':img, 'alt':alt }
+      response_dict = { # data that will be serialized by json
+          'title':form.cleaned_data['title'],
+          'alt'  :form.cleaned_data['alt'],
+          'name' :form.cleaned_data['name'][:25],
+          'id'   :new_image.pk,
+          'image':new_image.imaging_thumbnail.url,
+          }
       form = AjaxUploadForm()
       return render_to_response('iframe_form.html',
           { 'form' : form, 'callback': simplejson.dumps(response_dict) },

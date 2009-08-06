@@ -28,7 +28,7 @@ class ImageSelection(Widget):
     images_html = ''
     if len(initial_values) > 0:
       for image in initial_values:
-        images_html += '<div class="image_block"><span class="image_id">'+str(image.pk)+'</span><a href="/admin/imaging/image/'+str(image.pk)+'/" target="_blank" class="edit_image">Edit</a><a href="#" class="delete_image">Delete</a><img src="'+image.get_admin_thumb_url()+'" alt="'+image.alt+'" /><br /><span class="image_name">'+image.name[:25]+'</span></div>'
+        images_html += '<div class="image_block"><span class="image_id">'+str(image.pk)+'</span><a href="/admin/imaging/image/'+str(image.pk)+'/" target="_blank" class="edit_image">Edit</a><a href="#" class="delete_image">Delete</a><img src="'+image.imaging_thumbnail.url+'" alt="'+image.alt+'" /><br /><span class="image_name">'+image.name[:25]+'</span></div>'
 
     html = '''
     <div class="image_container"> %s </div>
