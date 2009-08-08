@@ -9,7 +9,7 @@ except ImportError:
   raise ImportError('Django Imaging needs imagekit to work. Please install imagekit: easy_install django-imagekit')
 
 DEFAULT_IMAGING_SETTINGS = {
-    'image_dir' : 'pictures',
+    'image_dir' : 'imaging_photos',
     'specs': 'imaging.specs'
     }
 
