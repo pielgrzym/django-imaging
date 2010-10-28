@@ -11,7 +11,7 @@
 </head>
 <body class="change-form">
 <div id="container">
-<form id="ajax_form" method="post" enctype="multipart/form-data" action="/imaging/iframe_form/">
+        <form id="ajax_form" method="post" enctype="multipart/form-data" action="/imaging/iframe_form/">{% csrf_token %}
   <fieldset class="module aligned">
   {% for field in form %}
   <div class="form-row">
