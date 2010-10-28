@@ -37,6 +37,7 @@ class ImagingField(models.Field):
   __metaclass__ = models.SubfieldBase
 
   def __init__(self, *args, **kwargs):
+    kwargs['default'] = ''
     super(ImagingField, self).__init__(*args, **kwargs)
 
   def contribute_to_class(self, cls, name):
@@ -58,3 +59,15 @@ class ImagingField(models.Field):
     defaults = {'form_class': CommaSeparatedIntField}
     defaults.update(kwargs)
     return super(ImagingField, self).formfield(**defaults)
+
+try:
+  from south.modelsinspector import add_introspection_rules
+  add_introspection_rules([
+    (
+      [ImagingField], # Class(es) these apply to
+      [],         # Positional arguments (not used)
+      {},           # Keyword argument
+    ),
+  ], ["^imaging\.fields\.ImagingField"])
+except ImportError:
+  pass
