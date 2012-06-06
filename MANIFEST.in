@@ -1,0 +1,2 @@
+include OLD_README.txt
+recursive-include imaging *
