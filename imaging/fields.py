@@ -19,7 +19,7 @@ class CommaSeparatedIntField(forms.CharField):
       if char not in valuelist:
         raise forms.ValidationError(_("Image field error, please contact administrator"))
     return value
-        
+
 def save_relations(sender, **kwargs):
   '''Take care about image order and image connection to a model'''
   value_dict = getattr(kwargs['instance'], kwargs['instance']._imaging_fname).split(",")
@@ -52,9 +52,9 @@ class ImagingField(models.Field):
     post_save.connect(save_relations, sender=model_instance.__class__)
     return getattr(model_instance, self.attname)
 
-  def db_type(self):
+  def db_type(self, connection=None):
     return 'char(255)'
-  
+
   def formfield(self, **kwargs):
     defaults = {'form_class': CommaSeparatedIntField}
     defaults.update(kwargs)
