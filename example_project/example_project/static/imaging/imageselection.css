@@ -1,0 +1,91 @@
+div.iframe_container {
+  display: block;
+  width: auto;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+  margin-top: 5px;
+  margin-left: 105px;
+}
+
+div.image_container {
+/*  background: #fff url(../img/admin/nav-bg.gif) repeat-x scroll 0  100%;*/
+  overflow: hidden;
+  border: 1px #ccc solid;
+  position: relative;
+}
+
+div.image_block {
+  display: block;
+  width: 205px;
+  height: 220px;
+  float: left;
+  margin: 2px;
+  padding-top: 3px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff url(nav-bg.gif) repeat-x scroll 0  100%;
+  position: relative;
+  overflow: hidden;
+}
+
+span.image_id {
+  display: none;
+}
+
+a.edit_image,
+a.delete_image {
+  display: block;
+  position: absolute;
+  height: 14px;
+  z-index: 100;
+  padding: 2px;
+  padding-right: 4px;
+  border-color: #ddd #aaa #aaa #ddd;
+  border-style: solid;
+  border-width: 1px;
+  top: -9999em;
+}
+
+a.edit_image {
+  left: 4px;
+  padding-left: 14px;
+  background: #fff url(icon_changelink.gif) no-repeat scroll 2px 4px;
+}
+
+a.delete_image {
+  color: #cc3434;
+  right: 4px;
+  padding-left: 14px;
+  background: #fff url(icon_deletelink.gif) no-repeat scroll 2px 4px;
+}
+
+a.delete_image:hover {
+  color: #993333;
+}
+
+span.image_name {
+  line-height: 190%;
+}
+
+div.uploading {
+  display: block;
+  background: #fff url(uploading.gif) center center no-repeat;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+div.remove_confirm {
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: 50px;
+  width: 160px;
+  background: #fff url(nav-bg.gif) repeat-x scroll 0  100%;
+  border-color: #ddd #aaa #aaa #ddd;
+  border-style: solid;
+  border-width: 1px;
+}

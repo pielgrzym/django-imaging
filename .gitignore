@@ -25,3 +25,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/example_project/example_project/media/
+/example_project/db.sql
