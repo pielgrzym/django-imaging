@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
         name = "django-imaging",
-        version = "0.9.9",
+        version = "0.9.10",
         author = "Jakub Nawalaniec",
         author_email = "pielgrzym@prymityw.pl",
         description = ("AJAX driven gallery field for django"),
