@@ -5,7 +5,6 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils import simplejson
-from settings import MEDIA_ROOT
 from django.core.files import File
 
 # Create your views here.
