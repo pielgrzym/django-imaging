@@ -3,8 +3,8 @@
 Django Imaging
 
 Author: Jakub Nawalaniec <pielgrzym@prymityw.pl>
-Version: 0.9.10
+Version: 1.0.0
 
 """
-VERSION = "0.9.10"
+VERSION = "1.0.0"
 

@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
         name = "django-imaging",
-        version = "0.9.10",
+        version = "1.0.0",
         author = "Jakub Nawalaniec",
         author_email = "pielgrzym@prymityw.pl",
         description = ("AJAX driven gallery field for django"),
@@ -19,10 +19,15 @@ setup(
         packages = find_packages(),
         zip_safe = False,
         include_package_data=True,
-        long_description = read("OLD_README.txt"),
+        long_description = read("README.txt"),
         classifiers=[
             "Development Status :: 3 - Alpha",
             "Framework :: Django",
             "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
             ],
+        install_requires = [
+            'django>=1.2',
+            'pil',
+            'django-imagekit>=1.0',
+            ]
         )
