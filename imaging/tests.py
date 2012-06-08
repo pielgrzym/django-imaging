@@ -16,7 +16,7 @@ PERMS = "777"
 
 class TestImagingSetup(TestCase):
     def test_file_permissions(self):
-        path = settings.MEDIA_ROOT+"/"+IMAGING_SETTINGS['image_dir']
+        path = os.path.join(settings.MEDIA_ROOT, IMAGING_SETTINGS['image_dir'])
         filemode = stat.S_IMODE(os.stat(path).st_mode)
         self.assertEquals(filemode, int(PERMS, 8))
 
@@ -26,10 +26,11 @@ class TestAjax(TestCase):
 
     def setUp(self):
         self.is_logged = self.client.login(username="admin", password="nimda")
-        self.upload_path = settings.MEDIA_ROOT+"/"+IMAGING_SETTINGS['image_dir']
+        self.upload_path = os.path.join(settings.MEDIA_ROOT, IMAGING_SETTINGS['image_dir'])
 
     def test_image_upload(self):
-        testfile = open(settings.MEDIA_ROOT+"/imaging/imaging_testfile.jpg")
+        testfile_path = os.path.join(settings.STATICFILES_DIRS[0], 'imaging', 'imaging_testfile.jpg')
+        testfile = open(testfile_path)
         data = {
                 'name': 'Test Image: guilt',
                 'alt': 'Alt of guilt',
@@ -40,9 +41,9 @@ class TestAjax(TestCase):
         testfile.close()
 
         # clean up test uploads
-        uploaded = os.remove(self.upload_path+"/imaging_testfile.jpg")
-        uploaded = os.remove(self.upload_path+"/imaging_thumbnail/imaging_testfile.jpg")
-        uploaded = os.remove(self.upload_path+"/small_thumbnail/imaging_testfile.jpg")
+        uploaded = Image.objects.all()[0]
+        os.remove(uploaded.imaging_thumbnail.file.name)
+        os.remove(uploaded.image.file.name)
 
         self.assertEquals(self.is_logged, True)
         self.assertEquals(response.status_code, 200)
