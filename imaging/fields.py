@@ -20,9 +20,6 @@ except ImportError:
     pass
 
 class GalleryField(models.ManyToManyField):
-    def __init__(self, *args, **kwargs):
-        super(GalleryField, self).__init__(*args, **kwargs)
-
     def formfield(self, **kwargs):
         defaults = {'form_class': GalleryChoiceField}
         defaults.update(kwargs)
