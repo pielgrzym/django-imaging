@@ -6,9 +6,8 @@ from django.forms.util import flatatt
 from django.forms.widgets import Widget
 
 from imaging.models import Image
-from imaging.legacy.widgets import ImageSelection
 
-class AjaxImageSelection(Widget):
+class ImageSelection(Widget):
   class Media:
     css = { 'all' : ('imaging/imageselection.css',), }
     js = ('imaging/jquery-1.3.2.min.js',
