@@ -36,6 +36,7 @@ class Image(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        app_label = 'imaging'
         ordering = ('ordering', 'name')
         permissions = (
                 ('imaging_upload_images', "Can upload using AJAX"),

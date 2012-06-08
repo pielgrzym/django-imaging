@@ -27,3 +27,4 @@ pip-log.txt
 .mr.developer.cfg
 /example_project/example_project/media/
 /example_project/db.sql
+/Session.vim

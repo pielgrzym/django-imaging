@@ -1,1 +1,1 @@
-from imaging.legacy.models import ImagingField
+from imaging.legacy.models import Image
