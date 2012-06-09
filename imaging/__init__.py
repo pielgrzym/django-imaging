@@ -20,6 +20,7 @@ class GalleryRegistry(object):
             raise SingletonError("Well, there can be only ONE. One singleton-highlander!")
         self.registry = {}
         self.relations_registry = {}
+        self.from_model_registry = {}
 
     def register(self, model):
         self.registry[model.__name__.lower()] = model
@@ -31,7 +32,11 @@ class GalleryRegistry(object):
         intermediate = model
         to_field = None
         for f in fks:
-            m = f.related.parent_model
+            import ipdb
+            ipdb.set_trace()
+            m = f.rel.to
+            if isinstance(m, str):
+                m = self.get_from_model(m)
             if len(m._meta.many_to_many):
                 from_field = m
             else:
