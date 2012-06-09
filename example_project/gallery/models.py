@@ -14,8 +14,8 @@ class Student(ImageAbstract):
     surname = models.CharField(max_length=255)
 
 class SchoolStudent(GalleryAbstract):
-    student = models.ForeignKey(Student)
-    schoolclass = models.ForeignKey('SchoolClass')
+    element = models.ForeignKey(Student)
+    gallery = models.ForeignKey('SchoolClass')
 
 class SchoolClass(models.Model):
     name = models.CharField(max_length=255)
