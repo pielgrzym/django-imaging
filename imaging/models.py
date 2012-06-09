@@ -46,6 +46,7 @@ class GalleryAbstract(models.Model):
 
     class Meta:
         abstract = True
+        auto_created = True # without this django admin won't show GalleryField!
 
 class ImageAbstract(models.Model):
     image = models.ImageField(upload_to=IMAGING_SETTINGS['image_upload_path'])

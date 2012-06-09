@@ -8,5 +8,6 @@ admin.site.register(Gallery, GalleryAdmin)
 
 class SchoolClassAdmin(admin.ModelAdmin):
     list_display = ('name',)
+    fields = ('name', 'students')
 
 admin.site.register(SchoolClass, SchoolClassAdmin)

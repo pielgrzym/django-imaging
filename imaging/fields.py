@@ -1,9 +1,4 @@
 from django.db import models
-from django import forms
-from django.utils.translation import ugettext as _
-from django.db.models.signals import post_save
-#from django.forms import widgets
-
 from imaging.forms import GalleryChoiceField
 from imaging.legacy.fields import ImagingField
 
