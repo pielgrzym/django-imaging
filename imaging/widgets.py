@@ -27,10 +27,9 @@ class AjaxImageSelection(Widget):
         value = force_unicode(value)
         final_attrs = self.build_attrs(attrs, name=name)
         template = render_to_string("imaging/admin_widget.html", {
-                'existing_images': initial_values,
-                'attrs': flatatt(final_attrs),
+                'existing_images': initial_values, # ask Cpt. Obvious
+                'attrs': flatatt(final_attrs), # just for sake of completeness
                 'value': conditional_escape(value),
-                'dest_model': self._dest_model,
+                'dest_model': self._dest_model, # to cunstruct url
                 })
-        print template
         return mark_safe(template)

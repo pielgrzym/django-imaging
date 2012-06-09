@@ -54,6 +54,10 @@ class ImageAbstract(models.Model):
 
     @classmethod
     def get_form(cls):
+        '''
+        This class method should return a custom modelform to use
+        in imaging_gallery_iframe_form
+        '''
         return False
 
     class Meta:
