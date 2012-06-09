@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from imaging.legacy.models import Image
 from imaging.fields import GalleryField
-from django.db.models.signals import class_prepared
+from django.db.models.signals import class_prepared, m2m_changed
 
 DEFAULT_IMAGING_SETTINGS = {
         'image_upload_path' : 'imaging_photos',
@@ -64,8 +64,24 @@ class ImageAbstract(models.Model):
         abstract = True
 
 def register_gallery(sender, **kwargs):
+    from imaging import galleries
     if issubclass(sender, ImageAbstract):
-        from imaging import galleries
         galleries.register(sender)
+    elif issubclass(sender, GalleryAbstract):
+        galleries.register_relation(sender)
+
+def save_gallery_elements(sender, instance, action, reverse, model, pk_set, **kwargs):
+    from imaging import galleries
+    if not sender in galleries.relations_registry.keys():
+        return
+    if action != 'pre_add':
+        return
+    int_model, to_model = galleries.relations_registry[sender]
+    for i, pk in enumerate(pk_set):
+        new_int = int_model(gallery=sender, element__pk=pk, order=i)
+        new_int.save()
+
+
 
 class_prepared.connect(register_gallery)
+m2m_changed.connect(save_gallery_elements)

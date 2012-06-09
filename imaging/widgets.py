@@ -14,7 +14,7 @@ class AjaxImageSelection(Widget):
         js = ('imaging/jquery-1.3.2.min.js',
                 'imaging/jquery-ui-1.7.1.custom.min.js',
                 'imaging/jquery.json-1.3.min.js',
-                'imaging/imageselection.js')
+                'imaging/gallery_field.js')
 
     def render(self, name, value, attrs=None):
         if not value == None:
@@ -31,5 +31,6 @@ class AjaxImageSelection(Widget):
                 'attrs': flatatt(final_attrs), # just for sake of completeness
                 'value': conditional_escape(value),
                 'dest_model': self._dest_model, # to cunstruct url
+                'name': name,
                 })
         return mark_safe(template)

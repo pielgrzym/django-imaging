@@ -1,4 +1,11 @@
+{% comment %}
 <input type="hidden" class="imaging_data" {{attrs|safe}} value={{value|safe}} />
+{% endcomment %}
+<div style="display: none">
+        <select name="{{name}}" id="gallery_output">
+
+        </select>
+</div>
 
 <div class="image_container">
         {% for image in existing_images %}

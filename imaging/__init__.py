@@ -19,9 +19,24 @@ class GalleryRegistry(object):
         if self.__obj_count > 1:
             raise SingletonError("Well, there can be only ONE. One singleton-highlander!")
         self.registry = {}
+        self.relations_registry = {}
 
     def register(self, model):
         self.registry[model.__name__.lower()] = model
+
+    def register_relation(self, model):
+        from django.db import models
+        fks = filter(lambda x: isinstance(x, models.ForeignKey), model._meta.fields)
+        from_field = None
+        intermediate = model
+        to_field = None
+        for f in fks:
+            m = f.related.parent_model
+            if len(m._meta.many_to_many):
+                from_field = m
+            else:
+                to_field = m
+        self.relations_registry[from_field] = [intermediate, to_field]
 
     def has_model(self, model):
         if model in self.registry.keys():
