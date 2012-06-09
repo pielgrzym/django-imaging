@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from imaging.legacy.models import Image
 from imaging.fields import GalleryField
+from django.db.models.signals import class_prepared
 
 DEFAULT_IMAGING_SETTINGS = {
         'image_upload_path' : 'imaging_photos',
@@ -51,6 +52,16 @@ class GalleryAbstract(models.Model):
 class ImageAbstract(models.Model):
     image = models.ImageField(upload_to=IMAGING_SETTINGS['image_upload_path'])
 
+    @classmethod
+    def get_form(cls):
+        return False
+
     class Meta:
         abstract = True
-        abstract = True
+
+def register_gallery(sender, **kwargs):
+    if issubclass(sender, ImageAbstract):
+        from imaging import galleries
+        galleries.register(sender)
+
+class_prepared.connect(register_gallery)
