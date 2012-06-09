@@ -28,3 +28,4 @@ pip-log.txt
 /example_project/example_project/media/
 /example_project/db.sql
 /Session.vim
+.ropeproject
