@@ -30,6 +30,7 @@ class AjaxImageSelection(Widget):
                 'existing_images': initial_values,
                 'attrs': flatatt(final_attrs),
                 'value': conditional_escape(value),
+                'dest_model': self._dest_model,
                 })
         print template
         return mark_safe(template)

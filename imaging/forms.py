@@ -8,4 +8,11 @@ class AjaxUploadForm(forms.ModelForm):
     exclude = ( 'content_type', 'content_object', 'object_id', 'ordering')
 
 class GalleryChoiceField(forms.ModelMultipleChoiceField):
+    def __init__(self, *args, **kwargs):
+        # we need to pass destinatio model to the widget
+        # so we can construct url to destination model form
+        dest_model = kwargs.pop('dest_model')
+        super(GalleryChoiceField, self).__init__(*args, **kwargs)
+        self.widget._dest_model = dest_model
+
     widget = AjaxImageSelection

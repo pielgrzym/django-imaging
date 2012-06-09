@@ -16,6 +16,7 @@ except ImportError:
 
 class GalleryField(models.ManyToManyField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': GalleryChoiceField}
+        defaults = {'form_class': GalleryChoiceField,
+                'dest_model': self.related.parent_model.__name__.lower()}
         defaults.update(kwargs)
         return super(GalleryField, self).formfield(**defaults)
