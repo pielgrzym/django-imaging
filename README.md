@@ -80,6 +80,6 @@ Limitations
    3. No orphaned images management
    4. ManyToMany? relation with an Image not supported
    5. Need to add a GenericRelation? field manually, I can't figoure out how to autoadd it
-   6. Exeptions not handled too well 
+   6. Exceptions not handled too well 
 
 [1]: http://prymityw.pl/files/imaging.jpg "Imaging field screenshot"
