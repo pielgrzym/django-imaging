@@ -56,8 +56,8 @@ function confirm_remove_image(){
 
 function remove_image(){
   var image_block = $(this).parent().parent();
-  var id = image_block.find("span.image_id").text();
-  $.post('/imaging/ajax_delete/', {'id':id}, function(data){
+  var csrf = $('input[name=csrfmiddlewaretoken]').val();
+  $.post('/imaging/ajax_delete/', {'csrfmiddlewaretoken': csrf, 'id':id}, function(data){
       if(data == 'ok') {
       image_block.fadeOut('slow', function(){ image_block.remove(); }); 
       }
