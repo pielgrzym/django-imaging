@@ -27,7 +27,7 @@ setup(
             ],
         install_requires = [
             'django>=1.2',
-            'pil',
+            'Pillow',
             'django-imagekit>=1.0',
             ]
         )
